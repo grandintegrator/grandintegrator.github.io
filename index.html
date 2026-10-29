@@ -8,6 +8,7 @@
 <meta property="og:title" content="Ajmal Aziz">
 <meta property="og:description" content="AI agents in production for Bunnings, Officeworks, Kmart and Qantas. Customer Engineer for Data and AI at Google.">
 <meta property="og:type" content="profile">
+<meta property="og:image" content="https://grandintegrator.github.io/img/ajmal.jpg">
 <meta name="theme-color" content="#EDECE7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17191C" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8 9 L22 13 L13 24 Z' fill='none' stroke='%231B1D21' stroke-width='2'/%3E%3Ccircle cx='8' cy='9' r='4' fill='%231B1D21'/%3E%3Ccircle cx='22' cy='13' r='5' fill='%23A13D1B'/%3E%3Ccircle cx='13' cy='24' r='4' fill='%231B1D21'/%3E%3C/svg%3E">
@@ -22,6 +23,9 @@
     --rule: #D3D1C9;
     --oxide: #A13D1B;   /* Pilbara iron oxide */
     --edge: #8B9098;
+    --c-ent: #A13D1B;
+    --c-aca: #2F5D7C;
+    --c-con: #66752A;
     --serif: "Newsreader", Georgia, serif;
     --sans: "Schibsted Grotesk", system-ui, sans-serif;
     --measure: 68ch;
@@ -36,6 +40,9 @@
       --rule: #33363B;
       --oxide: #E3845C;
       --edge: #6D727A;
+      --c-ent: #E3845C;
+      --c-aca: #86B0D0;
+      --c-con: #B4C26E;
       color-scheme: dark;
     }
   }
@@ -66,6 +73,10 @@
 
   /* Hero */
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; align-items: center; padding: 56px 0 72px; }
+  .namerow { display: flex; align-items: flex-end; gap: 28px; margin: 0 0 28px; }
+  .namerow h1 { margin: 0; }
+  .portrait { display: block; flex: none; width: 132px; height: 132px; border-radius: 50%; object-fit: cover; margin: 0 0 10px; box-shadow: 0 0 0 1px var(--rule); }
+  .logo { width: 40px; height: 40px; object-fit: contain; vertical-align: middle; margin: -4px 14px 0 0; padding: 4px; background: #fff; border: 1px solid var(--rule); border-radius: 9px; }
   .hero h1 {
     font-family: var(--serif); font-weight: 300; font-variation-settings: "opsz" 72;
     font-size: clamp(56px, 9vw, 116px); line-height: .92; letter-spacing: -0.025em; margin: 0 0 28px;
@@ -82,7 +93,7 @@
   .live .n b { font-weight: 600; color: var(--oxide); }
 
   .graph { position: relative; }
-  .graph canvas { display: block; width: 100%; height: 540px; touch-action: pan-y; cursor: grab; }
+  .graph canvas { display: block; width: 100%; height: 580px; touch-action: pan-y; cursor: grab; }
   .graph canvas.dragging { cursor: grabbing; }
   .graph figcaption { font-size: 14px; color: var(--muted); max-width: 40em; margin-top: 6px; }
   .tip {
@@ -128,14 +139,16 @@
 
   @media (max-width: 920px) {
     .hero { grid-template-columns: 1fr; padding-top: 36px; gap: 20px; }
-    .graph canvas { height: 380px; }
+    .graph canvas { height: 480px; }
     section { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 560px) {
     body { font-size: 16px; }
+    .portrait { width: 96px; height: 96px; margin-bottom: 6px; }
+    .namerow { gap: 18px; }
     .job, .edu, .awards li, .paper { grid-template-columns: 1fr; gap: 4px; }
     .when { padding-top: 0; }
-    .graph canvas { height: 320px; }
+    .graph canvas { height: 520px; }
     .live .who { display: none; }
   }
   @media print {
@@ -154,7 +167,6 @@
     <a class="mark" href="#">Ajmal Aziz</a>
     <nav aria-label="Contact and profiles">
       <a href="mailto:ajmal.t.aziz@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/abdul-aziz-physics/">LinkedIn</a>
       <a href="https://github.com/grandintegrator">GitHub</a>
       <a href="https://medium.com/@ajmal.t.aziz">Medium</a>
       <a href="https://scholar.google.co.uk/citations?user=pSrG8AoAAAAJ&amp;hl=en">Scholar</a>
@@ -163,8 +175,11 @@
 
   <div class="hero">
     <div>
-      <h1>Ajmal<br>Aziz</h1>
-      <p class="lede">I design and ship AI agents that millions of Australians use every month. I'm a Customer Engineer for Data and AI at Google, and before that I worked at Databricks, BCG and BHP. My research at Cambridge was on graph neural networks for supply chains.</p>
+      <div class="namerow">
+        <h1>Ajmal<br>Aziz</h1>
+        <img class="portrait" src="img/ajmal.jpg" alt="Portrait of Ajmal Aziz" width="132" height="132">
+      </div>
+      <p class="lede">I design and ship AI agents that millions of Australians use every month. I'm a Customer Engineer for Data and AI at Google, and before that I worked at Databricks, BCG and BHP. My research at Cambridge was on graph neural networks.</p>
       <table class="live">
         <caption>Agents I've built that are in production now</caption>
         <tbody>
@@ -179,7 +194,7 @@
     <figure class="graph" style="margin:0">
       <canvas id="graph" role="img" aria-label="A knowledge graph linking the organisations I've worked at, the AI agents I've built, the methods I use and the papers I've published. Dashed edges are predicted links."></canvas>
       <div class="tip" id="tip" aria-hidden="true"></div>
-      <figcaption>My work as a knowledge graph, simulated live in your browser. Dashed edges are links a model would predict, the problem my Cambridge thesis worked on. Drag a node to move it.</figcaption>
+      <figcaption>My work as a knowledge graph, grouped into enterprise, academia and consulting, and simulated live in your browser. Dashed edges are links a model would predict, the problem my Cambridge thesis worked on. Drag a node to move it.</figcaption>
     </figure>
   </div>
 
@@ -190,7 +205,7 @@
       <article class="job">
         <div class="when">Feb 2025 – now</div>
         <div>
-          <h3>Google</h3>
+          <h3><img class="logo" src="img/google.png" alt="" width="40" height="40">Google</h3>
           <p class="role">Customer Engineer, Data and AI</p>
           <ul>
             <li>Built and deployed <strong>Bunnings' Buddy</strong>, a Gemini-powered shopping agent for customers, after winning a competitive displacement against OpenAI. Designed the scaled production architecture now serving <strong>25M users, with about 10M monthly active</strong>. The launch had wide national news coverage, and Bunnings' VP presented it at Google Cloud Next. <a href="https://www.computerweekly.com/news/366642113/Bunnings-shows-off-AI-shopping-agent-at-Google-showcase">News</a></li>
@@ -207,7 +222,7 @@
       <article class="job">
         <div class="when">Jan 2022 – Feb 2025</div>
         <div>
-          <h3>Databricks</h3>
+          <h3><img class="logo" src="img/databricks.png" alt="" width="40" height="40">Databricks</h3>
           <p class="role">Solutions Architect</p>
           <ul>
             <li>Built a graph neural network recommendation system for go-to-market teams that has driven a <strong>15% increase in validated opportunities</strong>.</li>
@@ -227,7 +242,7 @@
       <article class="job">
         <div class="when">Jul 2021 – Oct 2021</div>
         <div>
-          <h3>Boston Consulting Group</h3>
+          <h3><img class="logo" src="img/bcg.png" alt="" width="40" height="40">Boston Consulting Group</h3>
           <p class="role">Data Scientist</p>
           <ul>
             <li>Developed AI strategy for the CEO of one of the world's largest gold miners.</li>
@@ -238,7 +253,7 @@
       <article class="job">
         <div class="when">Feb 2017 – Jul 2021</div>
         <div>
-          <h3>BHP</h3>
+          <h3><img class="logo" src="img/bhp.png" alt="" width="40" height="40">BHP</h3>
           <p class="role">Principal Data Scientist, Oct 2020 – Jul 2021</p>
           <ul>
             <li>Designed a machine learning product to lift dragline <strong>productivity by 22 Mbcm a year</strong>. Built the proof of concept, pitched it to senior asset leadership and won US$600k in funding.</li>
@@ -296,15 +311,15 @@
       <div class="edu">
         <div class="when">2020 – 2021</div>
         <div>
-          <h3>University of Cambridge</h3>
+          <h3><img class="logo" src="img/cambridge.png" alt="" width="40" height="40">University of Cambridge</h3>
           <p>Master of Philosophy, Distinction. <span class="meta">Ranked 1st of 32.</span></p>
-          <p class="meta">Thesis on link prediction for supply chain networks with graph neural networks, supervised by Prof. Alexandra Brintrup at the Distributed Information and Automation Lab.</p>
+          <p class="meta">Thesis on link prediction with graph neural networks, supervised by Prof. Alexandra Brintrup at the Distributed Information and Automation Lab.</p>
         </div>
       </div>
       <div class="edu">
         <div class="when">2013 – 2015</div>
         <div>
-          <h3>University of Western Australia</h3>
+          <h3><img class="logo" src="img/uwa.png" alt="" width="40" height="40">University of Western Australia</h3>
           <p>Master of Engineering, Distinction (top 5%). <span class="meta">GPA 6.75 / 7.</span></p>
           <p class="meta">Machine learning methods for dynamic dispatching, sponsored by BHP Billiton.</p>
         </div>
@@ -312,7 +327,7 @@
       <div class="edu">
         <div class="when">2009 – 2013</div>
         <div>
-          <h3>University of Western Australia</h3>
+          <h3><img class="logo" src="img/uwa.png" alt="" width="40" height="40">University of Western Australia</h3>
           <p>Bachelor of Science, Physics and Electrical Engineering. <span class="meta">GPA 6.5 / 7.</span></p>
           <p class="meta">Study abroad scholarship for nanophotonics at Nanjing University, China.</p>
         </div>
@@ -363,60 +378,81 @@
   }
 
   /* ---------- Knowledge graph ---------- */
+  // [id, label, kind, community, tooltip]
   const N = [
-    ['google', 'Google', 'org', 'Customer Engineer, Data and AI, 2025 – now'],
-    ['databricks', 'Databricks', 'org', 'Solutions Architect, 2022 – 2025'],
-    ['bhp', 'BHP', 'org', 'Data scientist, 2017 – 2021'],
-    ['bcg', 'BCG', 'org', 'Data Scientist, 2021'],
-    ['cam', 'Cambridge', 'org', 'MPhil, Distinction, ranked 1st of 32'],
-    ['uwa', 'UWA', 'org', 'MEng and BSc, physics and engineering'],
-    ['buddy', 'Buddy', 'agent', 'Bunnings: 25M users, 10M monthly active'],
-    ['ollie', 'Ollie', 'agent', 'Officeworks: 5M monthly active'],
-    ['joy', 'Joy', 'agent', 'Kmart: live on web and app'],
-    ['qantas', 'Qantas agent', 'agent', 'Deep research agent, 5,000 users'],
-    ['gemini', 'Gemini', 'method', 'Powers Buddy, Ollie and Joy'],
-    ['gnn', 'GNNs', 'method', 'Research focus at Cambridge and Databricks'],
-    ['rag', 'RAG', 'method', 'Retrieval-augmented generation'],
-    ['llmops', 'LLMOps', 'method', 'Taught to 7k+ people'],
-    ['claude', 'Claude Code', 'method', 'Enterprise rollout behind a LiteLLM proxy'],
-    ['opt', 'Optimisation', 'method', 'US$90M a year yield optimisation at BHP'],
-    ['icml', 'ICML 2021', 'paper', '33 citations'],
-    ['kdd', 'KDD 2022', 'paper', '40 citations'],
-    ['ijpr', 'IJPR 2022', 'paper', '249 citations'],
+    ['google', 'Google', 'org', 'ent', 'Customer Engineer, Data and AI, 2025 – now'],
+    ['databricks', 'Databricks', 'org', 'ent', 'Solutions Architect, 2022 – 2025'],
+    ['bhp', 'BHP', 'org', 'ent', 'Data scientist, 2017 – 2021'],
+    ['buddy', 'Buddy', 'agent', 'ent', 'Bunnings: 25M users, 10M monthly active'],
+    ['ollie', 'Ollie', 'agent', 'ent', 'Officeworks: 5M monthly active'],
+    ['joy', 'Joy', 'agent', 'ent', 'Kmart: live on web and app'],
+    ['qantas', 'Qantas agent', 'agent', 'ent', 'Deep research agent, 5,000 users'],
+    ['gemini', 'Gemini', 'method', 'ent', 'Powers Buddy, Ollie and Joy'],
+    ['agents', 'Agents', 'method', 'ent', 'AI agents in production for millions of users'],
+    ['llmops', 'LLMOps', 'method', 'ent', 'Taught to 7k+ people'],
+    ['opt', 'Optimisation', 'method', 'ent', 'US$90M a year yield optimisation at BHP'],
+    ['cam', 'Cambridge', 'org', 'aca', 'MPhil, Distinction, ranked 1st of 32'],
+    ['uwa', 'UWA', 'org', 'aca', 'MEng and BSc, physics and engineering'],
+    ['gnn', 'GNNs', 'method', 'aca', 'Graph neural networks, my research focus'],
+    ['icml', 'ICML 2021', 'paper', 'aca', '33 citations'],
+    ['kdd', 'KDD 2022', 'paper', 'aca', '40 citations'],
+    ['ijpr', 'IJPR 2022', 'paper', 'aca', '249 citations'],
+    ['bcg', 'BCG', 'org', 'con', 'Data Scientist, 2021'],
+    ['mck', 'McKinsey', 'org', 'con', 'Partner on Digital Factories and QuantumBlack work at BHP'],
+    ['strategy', 'AI strategy', 'method', 'con', 'AI strategy for a global gold miner and for BHP'],
   ];
   const E = [
-    ['google','buddy'],['google','ollie'],['google','joy'],['google','qantas'],['google','claude'],
+    ['google','buddy'],['google','ollie'],['google','joy'],['google','qantas'],['google','agents'],
     ['buddy','gemini'],['ollie','gemini'],['joy','gemini'],['qantas','gemini'],
-    ['databricks','gnn'],['databricks','rag'],['databricks','llmops'],
-    ['cam','gnn'],['cam','icml'],['gnn','icml'],['gnn','kdd'],['gnn','ijpr'],['cam','ijpr'],
-    ['bhp','opt'],['uwa','opt'],['bhp','uwa'],['bcg','bhp'],['bhp','cam'],
+    ['agents','buddy'],['agents','qantas'],['databricks','agents'],['databricks','llmops'],['bhp','opt'],
+    ['cam','gnn'],['cam','icml'],['gnn','icml'],['gnn','kdd'],['gnn','ijpr'],['cam','ijpr'],['uwa','cam'],
+    ['bcg','strategy'],['mck','strategy'],
+    // links across communities
+    ['databricks','gnn'],['bhp','uwa'],['mck','bhp'],['mck','opt'],
   ];
   // Hidden links revealed one by one, each with the score a link predictor might give it.
-  const P = [['rag','qantas',0.94],['gnn','buddy',0.88],['llmops','google',0.91],['opt','gnn',0.83]];
+  const P = [['gnn','buddy',0.88],['llmops','google',0.91],['strategy','agents',0.86],['opt','gnn',0.83]];
+  const COMMUNITY = { ent: 'Enterprise', aca: 'Academia', con: 'Consulting' };
 
   const canvas = document.getElementById('graph');
   const tip = document.getElementById('tip');
   const ctx = canvas.getContext('2d');
-  let W = 0, H = 0, dpr = 1, colors = {};
+  const SANS = '"Schibsted Grotesk", system-ui, sans-serif';
+  let W = 0, H = 0, dpr = 1, colors = {}, placed = false;
 
   const readColors = () => {
     const cs = getComputedStyle(document.documentElement);
-    ['paper','ink','muted','oxide','edge','rule'].forEach(k => colors[k] = cs.getPropertyValue('--' + k).trim());
+    ['paper','ink','muted','oxide','edge','rule','c-ent','c-aca','c-con']
+      .forEach(k => colors[k] = cs.getPropertyValue('--' + k).trim());
   };
   readColors();
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); kick(); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); start(); });
 
   const byId = {};
-  const nodes = N.map(([id, label, kind, info], i) => {
-    const a = (i / N.length) * Math.PI * 2;
-    const n = { id, label, kind, info, x: Math.cos(a) * 20, y: Math.sin(a) * 20, vx: 0, vy: 0, fixed: false,
-      r: kind === 'agent' ? 8 : kind === 'org' ? 6 : 4.5 };
+  const nodes = N.map(([id, label, kind, c, info]) => {
+    const n = { id, label, kind, c, info, x: 0, y: 0, vx: 0, vy: 0, fixed: false, w: 60,
+      r: kind === 'agent' ? 12 : kind === 'org' ? 10 : 7.5 };
     byId[id] = n; return n;
   });
-  const links = E.map(([a, b]) => ({ a: byId[a], b: byId[b], len: 100 }));
-  const predicted = P.map(([a, b, p]) => ({ a: byId[a], b: byId[b], p, len: 150, t0: null }));
+  const mk = (a, b) => ({ a: byId[a], b: byId[b], cross: byId[a].c !== byId[b].c });
+  const links = E.map(([a, b]) => mk(a, b));
+  const predicted = P.map(([a, b, p]) => Object.assign(mk(a, b), { p, t0: null }));
   const neighbours = n => new Set([...links, ...predicted.filter(l => l.t0 !== null)]
     .flatMap(l => l.a === n ? [l.b] : l.b === n ? [l.a] : []));
+
+  // Where each community gathers. Side by side on wide screens, stacked on narrow ones.
+  const anchors = () => W >= 560
+    ? { ent: [0.42 * W, 0.36 * H], aca: [0.3 * W, 0.8 * H], con: [0.8 * W, 0.74 * H] }
+    : { ent: [0.45 * W, 0.26 * H], aca: [0.36 * W, 0.78 * H], con: [0.7 * W, 0.56 * H] };
+
+  const place = () => {
+    const A = anchors();
+    let seed = 7; const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    nodes.forEach(n => { const [ax, ay] = A[n.c]; n.x = ax + (rand() - .5) * 60; n.y = ay + (rand() - .5) * 60; });
+    if (W < 560) nodes.forEach(n => n.r *= 0.75);
+    placed = true;
+    if (reduce) { predicted.forEach(l => l.t0 = 0); for (let i = 0; i < 500; i++) step(); }
+  };
 
   const resize = () => {
     const r = canvas.getBoundingClientRect();
@@ -424,43 +460,91 @@
     W = r.width; H = r.height;
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    kick();
+    if (!placed && W > 0) place();
+    start();
   };
 
-  let energy = 1;
-  const kick = () => { energy = Math.max(energy, 0.6); start(); };
-
   const step = () => {
-    const cx = W / 2, cy = H / 2, scale = Math.min(W, H) / 520;
+    const scale = Math.max(0.85, Math.min(W, H) / 560), A = anchors();
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];
         let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || 0.01;
         if (d2 > 160000) continue;
-        const f = (3400 * scale) / Math.max(d2, 120), d = Math.sqrt(d2);
+        const f = ((a.c === b.c ? (a.c === 'ent' ? 7000 : 4200) : 6000) * scale) / Math.max(d2, 150), d = Math.sqrt(d2);
         dx /= d; dy /= d;
         a.vx -= dx * f; a.vy -= dy * f; b.vx += dx * f; b.vy += dy * f;
       }
     }
-    const springs = links.concat(predicted.filter(l => l.t0 !== null));
-    for (const l of springs) {
+    for (const l of links.concat(predicted.filter(l => l.t0 !== null))) {
+      const len = (l.cross ? 170 : 84) * scale, s = l.cross ? 0.005 : 0.018;
       const dx = l.b.x - l.a.x, dy = l.b.y - l.a.y, d = Math.hypot(dx, dy) || 1;
-      const k = ((d - l.len * scale) / d) * 0.02;
+      const k = ((d - len) / d) * s;
       l.a.vx += dx * k; l.a.vy += dy * k; l.b.vx -= dx * k; l.b.vy -= dy * k;
+    }
+    // Keep each node's label box from overlapping another's.
+    const box = n => { const h = Math.max(n.r, 9) + 4; return [n.x - n.r - 4, n.x + n.r + 12 + n.w, n.y - h, n.y + h]; };
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i], A0 = box(a);
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j], B0 = box(b);
+        const ox = Math.min(A0[1], B0[1]) - Math.max(A0[0], B0[0]);
+        const oy = Math.min(A0[3], B0[3]) - Math.max(A0[2], B0[2]);
+        if (ox <= 0 || oy <= 0) continue;
+        if (oy < ox) { const d = (a.y < b.y ? -1 : 1) * oy * 0.25; a.vy += d; b.vy -= d; }
+        else { const d = (a.x < b.x ? -1 : 1) * ox * 0.25; a.vx += d; b.vx -= d; }
+      }
     }
     let ke = 0;
     for (const n of nodes) {
-      n.vx += (cx - n.x) * 0.0025; n.vy += (cy - n.y) * 0.0035;
+      const [ax, ay] = A[n.c];
+      n.vx += (ax - n.x) * 0.0045; n.vy += (ay - n.y) * 0.0045;
       if (n.fixed) { n.vx = n.vy = 0; continue; }
-      n.vx *= 0.82; n.vy *= 0.82;
+      n.vx *= 0.8; n.vy *= 0.8;
       n.x += n.vx; n.y += n.vy;
-      const pad = 16 + n.r;
-      n.x = Math.max(pad, Math.min(W - (n.r + 10 + (n.w || 60)), n.x));
-      n.y = Math.max(pad, Math.min(H - pad - 10, n.y));
+      const pad = 22 + n.r;
+      n.x = Math.max(pad, Math.min(W - (n.r + 18 + n.w), n.x));
+      n.y = Math.max(pad + 18, Math.min(H - pad, n.y));
       ke += n.vx * n.vx + n.vy * n.vy;
     }
     return ke;
+  };
+
+  // Convex hull (monotone chain) around a community's nodes and labels.
+  const hull = pts => {
+    pts.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo = [], up = [];
+    for (const p of pts) { while (lo.length > 1 && cross(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+    for (const p of pts.slice().reverse()) { while (up.length > 1 && cross(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+    return lo.slice(0, -1).concat(up.slice(0, -1));
+  };
+  const drawCommunity = (c, dim) => {
+    const pts = [];
+    let minX = Infinity, minY = Infinity;
+    for (const n of nodes) {
+      if (n.c !== c) continue;
+      const R = n.r + 16, L = n.x + n.r + 10 + n.w;
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; pts.push([n.x + Math.cos(a) * R, n.y + Math.sin(a) * R]); }
+      pts.push([L, n.y - 14], [L, n.y + 14]);
+    }
+    const h = hull(pts);
+    h.forEach(([x, y]) => { minX = Math.min(minX, x); minY = Math.min(minY, y); });
+    // Smooth the hull by curving through edge midpoints.
+    ctx.beginPath();
+    const m = i => { const a = h[i % h.length], b = h[(i + 1) % h.length]; return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; };
+    ctx.moveTo(...m(0));
+    for (let i = 1; i <= h.length; i++) { const p = h[i % h.length], q = m(i); ctx.quadraticCurveTo(p[0], p[1], q[0], q[1]); }
+    ctx.closePath();
+    const col = colors['c-' + c];
+    ctx.globalAlpha = dim ? 0.03 : 0.07; ctx.fillStyle = col; ctx.fill();
+    ctx.globalAlpha = dim ? 0.15 : 0.35; ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.stroke();
+    ctx.globalAlpha = dim ? 0.35 : 1;
+    ctx.fillStyle = col;
+    ctx.font = 'italic 400 19px "Newsreader", Georgia, serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(COMMUNITY[c], Math.max(6, minX + 10), Math.max(18, minY - 8));
   };
 
   let hover = null, drag = null;
@@ -468,52 +552,57 @@
     ctx.clearRect(0, 0, W, H);
     const lit = hover ? neighbours(hover) : null;
 
-    ctx.lineWidth = 1;
+    for (const c of Object.keys(COMMUNITY)) drawCommunity(c, hover && hover.c !== c);
+
+    ctx.setLineDash([]);
     for (const l of links) {
       const on = hover && (l.a === hover || l.b === hover);
       ctx.strokeStyle = on ? colors.ink : colors.edge;
-      ctx.globalAlpha = hover ? (on ? 0.9 : 0.15) : 0.45;
+      ctx.lineWidth = on ? 1.5 : 1.1;
+      ctx.globalAlpha = hover ? (on ? 0.9 : 0.12) : 0.5;
       ctx.beginPath(); ctx.moveTo(l.a.x, l.a.y); ctx.lineTo(l.b.x, l.b.y); ctx.stroke();
     }
 
-    ctx.setLineDash([4, 4]);
     for (const l of predicted) {
       if (l.t0 === null) continue;
       const p = reduce ? 1 : Math.min(1, (now - l.t0) / 900);
       const ex = l.a.x + (l.b.x - l.a.x) * p, ey = l.a.y + (l.b.y - l.a.y) * p;
-      ctx.strokeStyle = colors.oxide; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
-      ctx.globalAlpha = hover ? ((l.a === hover || l.b === hover) ? 1 : 0.15) : 0.85;
+      ctx.strokeStyle = colors.oxide; ctx.lineWidth = 1.4; ctx.setLineDash([5, 5]);
+      ctx.globalAlpha = hover ? ((l.a === hover || l.b === hover) ? 1 : 0.12) : 0.9;
       ctx.lineDashOffset = reduce ? 0 : -now / 60;
       ctx.beginPath(); ctx.moveTo(l.a.x, l.a.y); ctx.lineTo(ex, ey); ctx.stroke();
+      ctx.setLineDash([]);
       const age = now - l.t0;
       const la = reduce ? 0 : age < 900 ? 0 : age < 1300 ? (age - 900) / 400 : age < 3600 ? 1 : Math.max(0, 1 - (age - 3600) / 600);
       if (la > 0 && !hover) {
-        ctx.globalAlpha = la;
-        ctx.fillStyle = colors.oxide;
-        ctx.font = '500 12px "Schibsted Grotesk", system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.setLineDash([]); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = colors.paper;
-        ctx.strokeText('predicted, p = ' + l.p.toFixed(2), (l.a.x + l.b.x) / 2, (l.a.y + l.b.y) / 2 - 8);
-        ctx.fillText('predicted, p = ' + l.p.toFixed(2), (l.a.x + l.b.x) / 2, (l.a.y + l.b.y) / 2 - 8);
+        const txt = 'predicted, p = ' + l.p.toFixed(2), mx = (l.a.x + l.b.x) / 2, my = (l.a.y + l.b.y) / 2 - 10;
+        ctx.globalAlpha = la; ctx.font = '500 13px ' + SANS; ctx.textAlign = 'center';
+        ctx.lineJoin = 'round'; ctx.lineWidth = 5; ctx.strokeStyle = colors.paper; ctx.strokeText(txt, mx, my);
+        ctx.fillStyle = colors.oxide; ctx.fillText(txt, mx, my);
       }
     }
-    ctx.setLineDash([]);
 
     for (const n of nodes) {
+      const col = colors['c-' + n.c];
       const dim = hover && n !== hover && !lit.has(n);
+      const r = n.r + (n === hover ? 2 : 0);
       ctx.globalAlpha = dim ? 0.25 : 1;
-      ctx.beginPath(); ctx.arc(n.x, n.y, n.r + (n === hover ? 2 : 0), 0, Math.PI * 2);
-      if (n.kind === 'agent') { ctx.fillStyle = colors.oxide; ctx.fill(); }
-      else if (n.kind === 'org') { ctx.fillStyle = colors.ink; ctx.fill(); }
-      else { ctx.fillStyle = colors.paper; ctx.fill(); ctx.strokeStyle = colors.ink; ctx.lineWidth = 1.4; ctx.stroke(); }
+      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      if (n.kind === 'org' || n.kind === 'agent') { ctx.fillStyle = col; ctx.fill(); }
+      else { ctx.fillStyle = colors.paper; ctx.fill(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.stroke(); }
+      if (n.kind === 'agent') {
+        ctx.beginPath(); ctx.arc(n.x, n.y, r + 4.5, 0, Math.PI * 2);
+        ctx.strokeStyle = col; ctx.lineWidth = 1.2; ctx.stroke();
+      }
 
-      ctx.fillStyle = n.kind === 'agent' ? colors.oxide : n.kind === 'org' ? colors.ink : colors.muted;
-      ctx.font = (n.kind === 'org' ? '600 13px ' : n.kind === 'agent' ? '600 14px ' : '400 12px ') + '"Schibsted Grotesk", system-ui, sans-serif';
-      ctx.textAlign = 'left';
+      const fs = W < 560 ? 13 : 15;
+      ctx.font = (n.kind === 'method' || n.kind === 'paper' ? '400 ' + (fs - 1) + 'px ' : '600 ' + fs + 'px ') + SANS;
       n.w = ctx.measureText(n.label).width;
-      ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = colors.paper;
-      ctx.strokeText(n.label, n.x + n.r + 6, n.y + 4);
-      ctx.fillText(n.label, n.x + n.r + 6, n.y + 4);
+      const lx = n.x + r + (n.kind === 'agent' ? 10 : 7), ly = n.y + 5;
+      ctx.textAlign = 'left'; ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = colors.paper;
+      ctx.strokeText(n.label, lx, ly);
+      ctx.fillStyle = n.kind === 'agent' ? col : n.kind === 'org' ? colors.ink : colors.muted;
+      ctx.fillText(n.label, lx, ly);
     }
     ctx.globalAlpha = 1;
   };
@@ -521,38 +610,26 @@
   // Main loop: runs while the graph is moving and on screen, then sleeps.
   let running = false, visible = true, born = null, nextReveal = 0;
   const loop = now => {
-    if (born === null) { born = now; nextReveal = now + (reduce ? 0 : 2600); }
-    if (reduce) { for (const l of predicted) l.t0 = 0; }
-    else if (now >= nextReveal) {
+    if (born === null) { born = now; nextReveal = now + 2600; }
+    if (!reduce && now >= nextReveal) {
       const l = predicted.find(l => l.t0 === null);
-      if (l) { l.t0 = now; nextReveal = now + 3200; energy = Math.max(energy, 0.4); }
+      if (l) { l.t0 = now; nextReveal = now + 3200; }
     }
-    let ke = 0;
-    ke = step();
+    const ke = step();
     draw(now);
-    const animating = predicted.some(l => l.t0 !== null && now - l.t0 < 4300) || predicted.some(l => l.t0 === null);
+    const animating = !reduce && predicted.some(l => l.t0 === null || now - l.t0 < 4300);
     if (visible && (ke > 0.02 || drag || animating)) requestAnimationFrame(loop);
     else running = false;
   };
-  const start = () => { if (!running && visible) { running = true; requestAnimationFrame(loop); } };
-
-  if (reduce) {
-    // Settle the layout up front so nothing moves on its own.
-    const r = canvas.getBoundingClientRect(); W = r.width; H = r.height;
-    nodes.forEach(n => { n.x += W / 2; n.y += H / 2; });
-    predicted.forEach(l => l.t0 = 0);
-    for (let i = 0; i < 400; i++) step();
-  } else {
-    requestAnimationFrame(() => { nodes.forEach(n => { n.x += W / 2; n.y += H / 2; }); });
-  }
+  const start = () => { if (!running && visible && placed) { running = true; requestAnimationFrame(loop); } };
 
   new ResizeObserver(resize).observe(canvas);
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) kick(); }).observe(canvas);
-  document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) kick(); });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }).observe(canvas);
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; start(); });
 
   // Pointer: hover for details, drag to move.
   const pick = (x, y) => {
-    let best = null, bd = 22 * 22;
+    let best = null, bd = 26 * 26;
     for (const n of nodes) { const d = (n.x - x) ** 2 + (n.y - y) ** 2; if (d < bd) { bd = d; best = n; } }
     return best;
   };
@@ -562,13 +639,13 @@
     tip.innerHTML = '<strong></strong><br><span></span>';
     tip.querySelector('strong').textContent = n.label;
     tip.querySelector('span').textContent = n.info;
-    const x = Math.min(n.x + 14, W - 230), y = Math.max(0, n.y - 54);
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    tip.style.left = Math.max(0, Math.min(n.x + 16, W - 230)) + 'px';
+    tip.style.top = Math.max(0, n.y - 60) + 'px';
     tip.classList.add('on');
   };
   canvas.addEventListener('pointermove', e => {
     const [x, y] = local(e);
-    if (drag) { drag.x = x; drag.y = y; energy = 1; start(); showTip(drag); return; }
+    if (drag) { drag.x = x; drag.y = y; start(); showTip(drag); return; }
     const n = pick(x, y);
     if (n !== hover) { hover = n; showTip(n); draw(performance.now()); start(); }
   });
@@ -579,20 +656,19 @@
     drag = hover = n; n.fixed = true; canvas.setPointerCapture(e.pointerId); canvas.classList.add('dragging');
     showTip(n); start();
   });
-  const release = () => {
-    if (!drag) return;
-    drag.fixed = false; drag = null; canvas.classList.remove('dragging'); kick();
-  };
   // On touch screens, only block scrolling when the finger lands on a node.
   canvas.addEventListener('touchstart', e => {
     const t = e.touches[0], r = canvas.getBoundingClientRect();
     if (pick(t.clientX - r.left, t.clientY - r.top)) e.preventDefault();
   }, { passive: false });
+  const release = () => {
+    if (!drag) return;
+    drag.fixed = false; drag = null; canvas.classList.remove('dragging'); start();
+  };
   canvas.addEventListener('pointerup', release);
   canvas.addEventListener('pointercancel', release);
 
   resize();
-  start();
 })();
 </script>
 </body>
